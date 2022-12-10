@@ -37,6 +37,14 @@ def get_checklist():
     Input: 'colou?r|color'       Output: True
     Input: 'colou?r|colour'      Output: True
     Input: 'colou?r|colouur'     Output: False
+    Input: 'colou*r|color'       Output: True
+    Input: 'colou*r|colour'      Output: True
+    Input: 'colou*r|colouur'     Output: True
+    Input:  'col.*r|color'       Output: True
+    Input:  'col.*r|colour'      Output: True
+    Input:  'col.*r|colr'        Output: True
+    Input:  'col.*r|collar'      Output: True
+    Input: 'col.*r$|colors'      Output: False
     """
     lines = initial_text.strip().split("\n")
     output_list = []
