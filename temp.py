@@ -13,7 +13,9 @@ def check_asterisk(regex, text, origex):
 
 
 def check_addition(regex, text, origex):
-    pass
+    if regex[0] not in [".", "", text[0]]:
+        return normal_mode(regex[2:], text, origex)
+    return check_addition(regex, text[1:], origex)
 
 
 def normal_mode(regex, text, origex):
@@ -26,6 +28,8 @@ def normal_mode(regex, text, origex):
     if len(regex) > 1 and regex[1] == "*":
         return check_asterisk(regex, text, origex)
     if len(regex) > 1 and regex[1] == "+":
+        if regex[0] not in [".", "", *text]:
+            return False
         return check_addition(regex, text, origex)
     if regex[0] not in [".", "", text[0]]:
         return normal_mode(origex, text[1:], origex)
