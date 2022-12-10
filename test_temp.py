@@ -34,6 +34,9 @@ def get_checklist():
     Input:    'app$|apple'           Output: False
     Input:     '^le|apple'           Output: False
     Input:     'colour|colouur'      Output: False
+    Input: 'colou?r|color'       Output: True
+    Input: 'colou?r|colour'      Output: True
+    Input: 'colou?r|colouur'     Output: False
     """
     lines = initial_text.strip().split("\n")
     output_list = []
