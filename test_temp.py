@@ -51,6 +51,11 @@ def get_checklist():
     Input: 'a+b|bbbbbbbbbb'      Output: False
     Input: 'a+b|ehjwdgaabeidhew' Output: True
     Input: 'ehjwdga+b|ehjwdgaaabeidhew' Output: True
+    Input:  '.*|aaa'      Output: True
+    Input:  '.+|aaa'      Output: True
+    Input:  '^no+pe$|noooooooope'      Output: True
+    Input:  '^n.+pe$|noooooooope'      Output: True
+    Input:  '^.*c$|abcabc'      Output: False
     """
     lines = initial_text.strip().split("\n")
     output_list = []
