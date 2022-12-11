@@ -34,6 +34,28 @@ def get_checklist():
     Input:    'app$|apple'           Output: False
     Input:     '^le|apple'           Output: False
     Input:     'colour|colouur'      Output: False
+    Input: 'colou?r|color'       Output: True
+    Input: 'colou?r|colour'      Output: True
+    Input: 'colou?r|colouur'     Output: False
+    Input: 'colou*r|color'       Output: True
+    Input: 'colou*r|colour'      Output: True
+    Input: 'colou*r|colouur'     Output: True
+    Input:  'col.*r|color'       Output: True
+    Input:  'col.*r|colour'      Output: True
+    Input:  'col.*r|colr'        Output: True
+    Input:  'col.*r|collar'      Output: True
+    Input: 'col.*r$|colors'      Output: False
+    Input:  'a+b|ab'      Output: True
+    Input:  'a+b|bb'        Output: False
+    Input:  'a+b|aaaaaaaaab'      Output: True
+    Input: 'a+b|bbbbbbbbbb'      Output: False
+    Input: 'a+b|ehjwdgaabeidhew' Output: True
+    Input: 'ehjwdga+b|ehjwdgaaabeidhew' Output: True
+    Input:  '.*|aaa'      Output: True
+    Input:  '.+|aaa'      Output: True
+    Input:  '^no+pe$|noooooooope'      Output: True
+    Input:  '^n.+pe$|noooooooope'      Output: True
+    Input:  '^.*c$|abcabc'      Output: False
     """
     lines = initial_text.strip().split("\n")
     output_list = []
