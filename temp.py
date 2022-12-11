@@ -24,19 +24,29 @@ def check_addition(regex, text, origex):
     return check_addition(regex, text[1:], origex)
 
 
+def check_escape(regex, text, origex):
+    if regex[1] != '\\':
+        return normal_mode(regex[1:], text, origex)
+    if text[0] == regex[1]:
+        return normal_mode(regex[2:], text[1:], origex)
+    return False
+
+
 def normal_mode(regex, text, origex):
     if not regex:
         return True
     if not text:
         return False
-    if len(regex) > 1 and regex[1] == "?":
+    if len(regex) > 1 and regex[1] == "?" and regex[0] != '\\':
         return check_question(regex, text, origex)
-    if len(regex) > 1 and regex[1] == "*":
+    if len(regex) > 1 and regex[1] == "*" and regex[0] != '\\':
         return check_asterisk(regex, text, origex)
-    if len(regex) > 1 and regex[1] == "+":
+    if len(regex) > 1 and regex[1] == "+" and regex[0] != '\\':
         if regex[0] not in [".", "", *text]:
             return False
         return check_addition(regex, text, origex)
+    if len(regex) >= 1 and regex[0] == '\\':
+        return check_escape(regex, text, origex)
     if regex[0] not in [".", "", text[0]]:
         return normal_mode(origex, text[1:], origex)
     return normal_mode(regex[1:], text[1:], origex)
